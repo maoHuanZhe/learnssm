@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fgrapp.learnssm.mapper.DictionaryMapper">
+    <insert id="save">
+        insert into d_dictionary(dictSetID, dictValue, dictName, remark)
+        VALUE (#{dictSetID}, #{dictValue}, #{dictName}, #{remark})
+    </insert>
+    <update id="update">
+        update d_dictionary
+        set dictSetID = #{dictSetID},
+            dictValue = #{dictValue},
+            dictName = #{dictName},
+            remark = #{remark}
+        where dictID = #{dictID}
+    </update>
+    <delete id="delete">
+        delete from d_dictionary where dictID = #{id}
+    </delete>
+    <select id="getDictionaryByDictSetID" resultType="com.fgrapp.learnssm.pojo.Dictionary">
+        SELECT
+            dictID,
+            dictSetID,
+            dictValue,
+            dictName,
+            remark
+        FROM d_dictionary
+        WHERE
+            dictSetID = #{dictSetID}
+    </select>
+</mapper>
